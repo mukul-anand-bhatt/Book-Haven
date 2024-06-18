@@ -90,7 +90,7 @@ router.get("/userinfo", authenticateToken, async (req,res)=>{
     }
 });
 
-router.put("/updateadd", authenticateToken ,async (req,res)=>{
+router.put("/updateadd", authenticateToken , async (req,res)=>{
     try{
         const{id} = req.headers;
         const {address} = req.body;
