@@ -7,10 +7,6 @@ function App() {
             link: "/"
         },
         {
-            title: "About Us",
-            link: "/aboutus"
-        },
-        {
             title: "All Books",
             link: "/allbooks"
         },
@@ -46,10 +42,10 @@ function App() {
                     ))}
                 </div>
                 <div className="flex gap-4" >
-                    <button className="px-2 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300">
+                    <button className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300">
                         Login
                         </button>
-                    <button className="px-2 py-1 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300">
+                    <button className="px-4 py-1 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300">
                         Sign Up
                         </button>
                 </div>
