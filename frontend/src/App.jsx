@@ -9,9 +9,8 @@ export default function App() {
   return (
     <div>
       <Navbar/>
-      <Footer/>
       <Home/>
-      
+      <Footer/>
     </div>
   );
 }

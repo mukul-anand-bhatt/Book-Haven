@@ -2,7 +2,7 @@ import React from "react";
 
 export default function app(){
     return(
-        <div className="bg-green-500">
+        <div className="h-screen">
             Home
         </div>
     )
