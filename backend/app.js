@@ -7,10 +7,14 @@ const book = require("./routes/book")
 const Favourite = require("./routes/favourite");
 const cart = require("./routes/cart");
 const Order = require("./routes/order");
-
+const cors = require("cors")
 
 
 // Middleware to parse JSON requests
+app.use(cors({
+    origin: 'http://localhost:5173'
+}));
+
 app.use(express.json());
 
 // Use the correct base path for your routes

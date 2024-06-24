@@ -25,7 +25,9 @@ function App() {
     const [mobileNav, setMobileNav] = useState("hidden");
 
     const toggleMobileNav = () => {
-        setMobileNav(mobileNav === "hidden" ? "block" : "hidden");
+        setMobileNav(mobileNav === "hidden"
+            ? "block" 
+            : "hidden");
     };
 
     const hideMobileNav = () => {
@@ -62,7 +64,8 @@ function App() {
                             Sign Up
                         </Link>
                     </div>
-                    <button className="text-white text-2xl hover:text-zinc-400 md:hidden" onClick={toggleMobileNav}>
+                    <button
+                    className="block md:hidden text-white text-2xl hover:text-zinc-400X" onClick={toggleMobileNav}>
                         <FaGripLines />
                     </button>
                 </div>
