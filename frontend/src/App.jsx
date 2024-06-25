@@ -8,7 +8,7 @@ import LogIn from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile"
 import Cart from "./pages/Cart"
-
+import ViewBookDetails from "./components/ViewBookDetails/ViewBookDetails"
 
 export default function App() {
 
@@ -23,6 +23,7 @@ export default function App() {
           <Route path="/LogIn" element={<LogIn/>} />
           <Route path="/profile" element={<Profile/>} />
           <Route path="/cart" element={<Cart/>} />
+          <Route path="/getbookbyid/:id" element={<ViewBookDetails/>}/>
         </Routes>
         <Footer/>
       </Router>
