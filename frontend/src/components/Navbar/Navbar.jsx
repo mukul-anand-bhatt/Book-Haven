@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGripLines } from "react-icons/fa";
+import { TOKEN_KEY } from "../../pages/contants";
 
 function App() {
     const links = [
@@ -34,6 +35,16 @@ function App() {
         setMobileNav("hidden");
     };
 
+    const LogOutButton = () => {
+        return (
+            <button onClick={()=>{
+                    localStorage.removeItem(TOKEN_KEY);
+                    window.location.reload();
+                }}>Log out
+            </button> 
+        )
+    }
+
     return (
         <>
             <nav className="z-50 relative flex bg-zinc-800 text-white px-8 py-2 items-center justify-between">
@@ -56,6 +67,7 @@ function App() {
                             </Link>
                         ))}
                     </div>
+                    { localStorage.getItem(TOKEN_KEY) ? LogOutButton():
                     <div className="hidden md:flex gap-4">
                         <Link to="/LogIn" className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300">
                             Login
@@ -63,7 +75,7 @@ function App() {
                         <Link to="/Signup" className="px-4 py-1 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300">
                             Sign Up
                         </Link>
-                    </div>
+                    </div>}
                     <button
                     className="block md:hidden text-white text-2xl hover:text-zinc-400X" onClick={toggleMobileNav}>
                         <FaGripLines />
@@ -80,12 +92,18 @@ function App() {
                         {items.title}{" "}
                     </Link>
                 ))}
-                <Link to="/LogIn" className="px-8 mb-8 text-3xl font-semibold py-2 border border-blue-500 rounded text-white hover:bg-white hover:text-zinc-800 transition-all duration-300" onClick={hideMobileNav}>
-                    Login
-                </Link>
-                <Link to="/Signup" className="px-8 mb-8 text-3xl font-semibold py-2 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300" onClick={hideMobileNav}>
-                    Sign Up
-                </Link>
+                {/* // {condition ? trueLogic : FalseLogic} */}
+                    {/* <LogOutButton/> */}
+                { localStorage.getItem(TOKEN_KEY) ? LogOutButton():
+                    <div>
+                        <Link to="/LogIn" className="px-8 mb-8 text-3xl font-semibold py-2 border border-blue-500 rounded text-white hover:bg-white hover:text-zinc-800 transition-all duration-300" onClick={hideMobileNav}>
+                            Login
+                        </Link>
+                        <Link to="/Signup" className="px-8 mb-8 text-3xl font-semibold py-2 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300" onClick={hideMobileNav}>
+                            Sign Up
+                        </Link>
+                    </div>
+                }
             </div>
         </>
     );

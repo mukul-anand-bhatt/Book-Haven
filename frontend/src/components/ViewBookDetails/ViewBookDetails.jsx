@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import Loader from "../Loader/Loader";
 import { useParams } from "react-router-dom";
+import { GrLanguage } from "react-icons/gr";
 
 export default function App() {
     const { id } = useParams();
@@ -21,32 +21,33 @@ export default function App() {
             }
         };
         fetch();
-    }, [id]);
-
-    if (loading) {
-        return <Loader />;
-    }
-
+    }, []);
     return (
-        <div className="px-12 py-8 bg-zinc-900 flex gap-8">
-            {Data && (
-                <div className="bg-zinc-800 rounded p-4 h-[88vh] w-full flex items-center justify-center">
-                    <div className="flex flex-col md:flex-row gap-8">
-                        <div className="flex-shrink-0">
-                            <img src={Data.url} alt="Book" className="w-60 h-auto rounded"/>
-                        </div>
-                        <div className="flex flex-col justify-between">
-                            <div>
-                                <h2 className="text-2xl font-bold text-white mb-4">{Data.title}</h2>
-                                <p className="text-xl text-gray-400 mb-2"><strong>Author:</strong> {Data.author}</p>
-                                <p className="text-xl text-gray-400 mb-2"><strong>Price:</strong> ₹{Data.price}</p>
-                                <p className="text-lg text-gray-400 mb-2"><strong>Description:</strong> {Data.desc}</p>
-                                <p className="text-lg text-gray-400"><strong>Language:</strong> {Data.language}</p>
-                            </div>
-                        </div>
-                    </div>
+        <>
+            {Data &&(
+                <div className="px-12 py-8 bg-zinc-900  flex  flex-col md:flex-row gap-8">
+                <div className="bg-zinc-800 rounded p-4 h-[70vh] lg:h-[88vh] w-full lg:w-3/6 w-3/6 flex items-center justify-center">
+                    {" "}
+                    <img src={Data.url} alt="/" className="h-[50vh] lg:h-[70vh]" />
                 </div>
+                <div className="p-4 w-full lg:w-3/6 w-3/6">
+                    <h1 className="text-4xl text-zinc-300 font-semibold">{Data.title}</h1>
+                    <p className="text-zinc-400 mt-1">by {Data.author}</p>
+                    <p className="text-zinc-500 mt-4 text-xl">{Data.desc}</p>
+                    <p className="flex mt-4 items-center justify-start text-zinc-400">
+                        <GrLanguage className="me-3" />{Data.language}
+                    </p>
+                    <p className="mt-4 text-zinc-100 text-3xl font-semibold">
+                        Price : ₹{Data.price}
+                    </p>
+                </div>
+            </div>
             )}
-        </div>
+            {!Data && (
+                <div className="h-screen bg-zinc-900 items-center justify-center">
+                <Loader/>{" "}
+                </div>
+                )}
+        </>
     );
 }

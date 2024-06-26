@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import { useHistory } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import {TOKEN_KEY} from "./contants";
 
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    // const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,14 +17,17 @@ export default function Login() {
                 username,
                 password
             });
+
             console.log(response);
             // Assuming your backend returns a success message or token upon successful login
-            // if (response.data.success) {
-            //     // Redirect to home page
-            //     history.push('/');
-            // } else {
-            //     setErrorMessage("Login failed"); // Handle failed login scenario
-            // }
+            
+            localStorage.setItem(TOKEN_KEY,response.data.token);
+            navigate("/");
+            window.location.reload();
+            
+            if(!response.data) {
+                setErrorMessage("Login failed"); // Handle failed login scenario
+            }
             
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
