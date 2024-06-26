@@ -22,6 +22,7 @@ export default function Login() {
             // Assuming your backend returns a success message or token upon successful login
             
             localStorage.setItem(TOKEN_KEY,response.data.token);
+            
             navigate("/");
             window.location.reload();
             

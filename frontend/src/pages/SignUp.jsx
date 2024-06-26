@@ -19,8 +19,7 @@ export default function Signup() {
                 address
             });
             
-            console.log(response.data); // Assuming backend returns { message: "Signup Successful!!" }
-            // Optionally, you can redirect to login page or show success message
+
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 setErrorMessage(error.response.data.message);
