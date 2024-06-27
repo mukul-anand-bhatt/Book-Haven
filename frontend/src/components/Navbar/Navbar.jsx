@@ -35,9 +35,12 @@ function App() {
         setMobileNav("hidden");
     };
 
+
+
+
     const LogOutButton = () => {
         return (
-            <button onClick={()=>{
+            <button className="px-3 mb-2 text-lg font-semibold py-1 border border-blue-500 md:none rounded text-white hover:bg-white hover:text-zinc-800 transition-all duration-300" onClick={()=>{
                     localStorage.removeItem(TOKEN_KEY);
                     window.location.reload();
                 }}>Log out
