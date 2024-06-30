@@ -17,10 +17,7 @@ export default function Login() {
                 username,
                 password
             });
-
-            console.log(response);
-            // Assuming your backend returns a success message or token upon successful login
-            
+            //storing the token in local storage
             localStorage.setItem(TOKEN_KEY,response.data.token);
             
             navigate("/");

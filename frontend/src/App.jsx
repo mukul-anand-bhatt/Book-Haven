@@ -2,7 +2,7 @@ import React from "react"
 import Home from "./pages/home"
 import Navbar from "./components/Navbar/Navbar"
 import Footer from "./components/Footer/Footer"
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import AllBooks from "./pages/AllBooks";
 import LogIn from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <div>
-      <Router>
+
         <Navbar/>
         <Routes>
           <Route exact path="/" element={<Home/>} />
@@ -24,9 +24,9 @@ export default function App() {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/getbookbyid/:id" element={<ViewBookDetails/>}/>
-        </Routes>
+        </Routes> 
         <Footer/>
-      </Router>
+
     </div>
   );
 }
