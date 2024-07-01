@@ -3,6 +3,8 @@ import axios from "axios";
 import Loader from "../Loader/Loader";
 import { useParams } from "react-router-dom";
 import { GrLanguage } from "react-icons/gr";
+import { FaHeart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function App() {
     const { id } = useParams();
@@ -26,9 +28,19 @@ export default function App() {
         <>
             {Data &&(
                 <div className="px-12 py-8 bg-zinc-900  flex  flex-col md:flex-row gap-8">
-                <div className="bg-zinc-800 rounded p-4 h-[70vh] lg:h-[88vh] w-full lg:w-3/6 w-3/6 flex items-center justify-center">
+                <div className="bg-zinc-800 rounded p-4 h-[70vh] lg:h-[88vh] w-full lg:w-3/6 w-3/6 flex items-center justify-center gap-8">
                     {" "}
-                    <img src={Data.url} alt="/" className="h-[50vh] lg:h-[70vh]" />
+                    <img src={Data.url} 
+                    alt="/" 
+                    className="h-[50vh] lg:h-[70vh]"/>
+                    <div className="flex md:flex-col">
+                        <button className="bg-white rounded-full text-5xl p-3 text-red-500">
+                            <FaHeart />
+                        </button>
+                        <button className="bg-white rounded-full text-5xl p-3 mt-8 text-blur-500">
+                            <FaShoppingCart />
+                        </button>
+                    </div>
                 </div>
                 <div className="p-4 w-full lg:w-3/6 w-3/6">
                     <h1 className="text-4xl text-zinc-300 font-semibold">{Data.title}</h1>
