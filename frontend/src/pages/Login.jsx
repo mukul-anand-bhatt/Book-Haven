@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate} from "react-router-dom";
-import {TOKEN_KEY} from "./contants";
+import {TOKEN_KEY,ID} from "./constants";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -19,7 +19,7 @@ export default function Login() {
             });
             //storing the token in local storage
             localStorage.setItem(TOKEN_KEY,response.data.token);
-            
+            localStorage.setItem(ID,response.data.id);
             navigate("/");
             window.location.reload();
             
