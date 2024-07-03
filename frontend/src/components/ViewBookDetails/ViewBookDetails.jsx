@@ -5,13 +5,12 @@ import { useParams } from "react-router-dom";
 import { GrLanguage } from "react-icons/gr";
 import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { TOKEN_KEY } from "../../pages/constants"; // Adjust the path as needed
+import { TOKEN_KEY,ROLE } from "../../pages/constants"; // Adjust the path as needed
 
 export default function App() {
   const { id } = useParams();
   const [Data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userRole, setUserRole] = useState(null);
   const token = localStorage.getItem(TOKEN_KEY);
 
   useEffect(() => {
@@ -30,26 +29,7 @@ export default function App() {
     fetch();
   }, [id]);
 
-//   useEffect(() => {
-//     if (token) {
-//       const fetchUserRole = async () => {
-//         try {
-//           const response = await axios.get(
-//             "http://localhost:3000/api/v1/getUserRole",
-//             {
-//               headers: {
-//                 authorization: `Bearer ${token}`,
-//               },
-//             }
-//           );
-//           setUserRole(response.data.role);
-//         } catch (error) {
-//           console.error("Error fetching user role", error);
-//         }
-//       };
-//       fetchUserRole();
-//     }
-//   }, [token]);
+
 
   const handleAddToCart = async () => {
     try {

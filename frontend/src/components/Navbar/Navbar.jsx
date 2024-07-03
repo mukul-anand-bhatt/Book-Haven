@@ -4,7 +4,7 @@ import { FaGripLines } from "react-icons/fa";
 import { TOKEN_KEY,ID } from "../../pages/constants";
 
 function App() {
-    const isLoggedIn = !!localStorage.getItem(TOKEN_KEY);
+    const isLoggedIn = localStorage.getItem(TOKEN_KEY);
     
     const links = [
         {
