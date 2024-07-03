@@ -5,14 +5,20 @@ import { useParams } from "react-router-dom";
 import { GrLanguage } from "react-icons/gr";
 import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { TOKEN_KEY,ROLE } from "../../pages/constants"; // Adjust the path as needed
+import { FaEdit } from "react-icons/fa";
+import {useSelector} from "react-redux";
+import { MdOutlineDelete } from "react-icons/md";
+import { ID } from "../../pages/constants";
+
 
 export default function App() {
   const { id } = useParams();
   const [Data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem(TOKEN_KEY);
+  // const role = localStorage.getItem(ROLE);
 
+  const isLoggedIn = useSelector((state)=>state.auth.isLoggedIn);
+  const role = useSelector((state)=>state.auth.role);
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -28,6 +34,27 @@ export default function App() {
     };
     fetch();
   }, [id]);
+
+  const headers ={
+    id:localStorage.getItem("id"),
+    authorziation:`Bearer ${localStorage.getItem("token")}`,
+    bookid:id,
+  }
+  const handleAddToFavorites = async () => {
+    try {
+      await axios.put(
+        "http://localhost:3000/api/v1/addToFavorites",{},
+        {headers}
+        
+      );
+      alert("Added to favorites");
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error adding to favorites", error);
+      alert("Failed to add to favorites");
+    }
+   
+  };
 
 
 
@@ -49,24 +76,6 @@ export default function App() {
     }
   };
 
-  const handleAddToFavorites = async () => {
-    try {
-      await axios.post(
-        "http://localhost:3000/api/v1/addToFavorites",
-        { bookId: id },
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      alert("Added to favorites");
-    } catch (error) {
-      console.error("Error adding to favorites", error);
-      alert("Failed to add to favorites");
-    }
-  };
-
   return (
     <>
       {loading ? (
@@ -79,8 +88,10 @@ export default function App() {
             <div className="w-full lg:w-3/6">
               <div className="flex flex-col lg:flex-row justify-around bg-zinc-800 p-4 md:p-12 rounded">
                 <img src={Data.url} alt="/" className="h-[50vh] md:h-[60vh] lg:h-[70vh] mb-4 lg:mb-0" />
-                {token && (
-                  <div className="flex flex-row lg:flex-col items-center justify-between lg:justify-start gap-4">
+
+
+                {isLoggedIn==true && role==="user" && (
+                  <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between lg:justify-start gap-4">
                     <button
                       className="bg-white rounded-full text-red-500 text-2xl md:text-3xl p-3 flex items-center justify-center"
                       onClick={handleAddToFavorites}
@@ -94,6 +105,28 @@ export default function App() {
                     >
                       <FaShoppingCart className="mr-2" />
                       <span className="ms-4 block lg:hidden">Add to Cart</span>
+                    </button>
+                  </div>
+                )}
+
+
+                {isLoggedIn==true && role==="admin" && (
+                  <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between lg:justify-start gap-4">
+                    <button
+                      className="bg-white rounded-full text-red-500 text-2xl md:text-3xl p-3 flex items-center justify-center"
+                      onClick={handleAddToFavorites}
+                    >
+                      
+                      <FaEdit  className="mr-2" />
+                      <span className="ms-4 block lg:hidden">Edit</span>
+                    </button>
+                    <button
+                      className="bg-blue-500 text-white rounded-full text-2xl md:text-3xl p-3 flex items-center justify-center  "
+                      onClick={handleAddToCart}
+                    >
+                  
+                      <MdOutlineDelete className="mr-2"/>
+                      <span className="ms-4 block lg:hidden">Delete</span>
                     </button>
                   </div>
                 )}
