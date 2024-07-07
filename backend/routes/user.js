@@ -64,7 +64,7 @@ router.post("/signin", async (req, res) => {
                 {role: user.role}
             ]
             const token = jwt.sign({authClaims},"bookstore123",{
-                expiresIn:"30d"
+                expiresIn:"1d"
             });
             return res.status(200).json({id: user._id, role: user.role,token: token});
         }

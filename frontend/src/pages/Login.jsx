@@ -21,6 +21,7 @@ export default function Login() {
             localStorage.setItem(TOKEN_KEY,response.data.token);
             localStorage.setItem(ID,response.data.id);
             localStorage.setItem(ROLE,response.data.role);
+            
             navigate("/");
             window.location.reload();
             
