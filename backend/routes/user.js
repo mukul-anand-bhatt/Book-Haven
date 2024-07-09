@@ -83,6 +83,7 @@ router.get("/userinfo", authenticateToken, async (req,res)=>{
     try{
         const {id} = req.headers;
         const data = await User.findById(id).select('-password');
+        console.log(data);
         return res.status(200).json(data);
     }
     catch(error){

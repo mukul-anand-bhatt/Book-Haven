@@ -43,7 +43,7 @@ export default function App() {
   const handleAddToFavorites = async () => {
   
       const response = await axios.put(
-        "http://localhost:3000/api/v1//addbooktofavourite",
+        "http://localhost:3000/api/v1/addbooktofavourite",
         {},
         { headers }
       );

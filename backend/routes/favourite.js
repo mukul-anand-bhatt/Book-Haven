@@ -41,12 +41,12 @@ router.get("/getfavbooks", authenticateToken, async (req, res) => {
       return res.status(400).json({ message: "User ID is required in headers" });
     }
 
-    const userData = await User.findById(id).populate("favourites");
+    const userData = await User.findById(id);
 
     if (!userData) {
       return res.status(404).json({ message: "User not found" });
     }
-
+   
     const favBooks = userData.favourites;
     return res.json({
       status: "Success",
