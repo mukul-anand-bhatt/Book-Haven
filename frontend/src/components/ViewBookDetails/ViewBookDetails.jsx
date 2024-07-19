@@ -52,18 +52,15 @@ export default function App() {
   };
 
   const handleAddToCart = async () => {
-    try {
-      const response = await axios.put(
-        "http://localhost:3000/api/v1/addtocart",
-        {},
-        { headers }
-      );
-      alert(response.data.message);
-    } catch (error) {
-      console.error("Error adding to cart", error);
-      alert("An error occurred while adding the book to the cart");
-    }
-  };
+  
+    const response = await axios.put(
+      "http://localhost:3000/api/v1/addtocart",
+      {},
+      { headers }
+    );
+    alert(response.data.message);  
+};
+
   
 
   return (

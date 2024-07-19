@@ -54,7 +54,7 @@ export default function App(){
     }
 
     return (
-        <div className="bg-zinc-900 px-2 md:px-12 flex flex-col md:flex-row h-screen py-8 gap-4 text-white">
+        <div className="bg-zinc-900 px-2 md:px-12 flex flex-col md:flex-row min-h-screen py-8 gap-4 text-white">
             <div className="w-1/6">
                 <Sidebar data={profile} />
             </div>
@@ -62,7 +62,7 @@ export default function App(){
                 {profile ? (
                     <Outlet context={{ profile }} />
                 ) : (
-                    <p>No profile data available.</p>
+                    <p className="text-5xl font-semibold h-[100%] text-zinc-500 flex items-center justify-center w-full">No profile data available.</p>
                 )}
             </div>
         </div>

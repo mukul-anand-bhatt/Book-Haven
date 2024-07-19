@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = ({ data }) => {
-  
-
   return (
     <div className="bg-zinc-800 p-4 rounded flex flex-col items-center justify-between w-full h-[100%]">
       <div className="flex items-center flex-col justify-center"> 
